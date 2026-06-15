@@ -1,0 +1,375 @@
+/* ===================================== */
+/* ========== TABLE ANIMATIONS ========= */
+/* ===================================== */
+
+@keyframes tableFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rowSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(236, 72, 153, 0);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(236, 72, 153, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(236, 72, 153, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -450px 0;
+  }
+  100% {
+    background-position: 450px 0;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
+
+/* ===================================== */
+/* ======== TABLE WRAPPER ============== */
+/* ===================================== */
+
+.data-table-wrapper {
+  overflow-x: auto;
+
+  background: linear-gradient(
+    135deg,
+    #140b22 0%,
+    #1e1033 35%,
+    #2a1248 100%
+  );
+
+  border-radius: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(168, 85, 247, 0.14);
+
+  animation: tableFadeUp 0.8s ease;
+
+  transition: all 0.35s ease;
+}
+
+.data-table-wrapper:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.45),
+    0 0 45px rgba(236, 72, 153, 0.22);
+}
+
+/* ===================================== */
+/* ============= TABLE ================= */
+/* ===================================== */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  overflow: hidden;
+  color: #f8fafc;
+}
+
+/* ===================================== */
+/* ============ HEADERS ================ */
+/* ===================================== */
+
+.data-table th {
+  background: linear-gradient(
+    135deg,
+    #7e22ce,
+    #9333ea,
+    #ec4899
+  );
+
+  background-size: 250% 250%;
+
+  animation: gradientMove 8s ease infinite;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+  text-align: left;
+
+  padding: 15px 18px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  white-space: nowrap;
+
+  letter-spacing: 0.3px;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
+
+  transition: all 0.3s ease;
+}
+
+.data-table th:hover {
+  filter: brightness(1.08);
+}
+
+/* ===================================== */
+/* ============== CELLS ================ */
+/* ===================================== */
+
+.data-table td {
+  padding: 14px 18px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  color: #f3e8ff;
+
+  transition: all 0.28s ease;
+
+  animation: rowSlide 0.45s ease;
+}
+
+/* ===================================== */
+/* ============== ROWS ================= */
+/* ===================================== */
+
+.data-table tbody tr {
+  background: rgba(255, 255, 255, 0.03);
+
+  transition: all 0.35s ease;
+}
+
+/* Zebra stripes */
+
+.data-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.data-table tbody tr:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.22),
+    rgba(236, 72, 153, 0.22)
+  );
+
+  transform: scale(1.003);
+}
+
+.data-table tbody tr:hover td {
+  color: #ffffff;
+}
+
+/* ===================================== */
+/* ============= EMPTY ROW ============= */
+/* ===================================== */
+
+.empty-row {
+  text-align: center;
+
+  color: #e9d5ff;
+
+  padding: 55px 18px !important;
+
+  font-size: 1rem;
+
+  animation: tableFadeUp 0.8s ease;
+}
+
+/* ===================================== */
+/* ============ ACTION COL ============= */
+/* ===================================== */
+
+.actions-col {
+  white-space: nowrap;
+  width: 160px;
+}
+
+.actions-col .btn {
+  margin-right: 6px;
+  transition: all 0.28s ease;
+}
+
+.actions-col .btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  animation: glowPulse 1.5s infinite;
+}
+
+/* ===================================== */
+/* ============ BUTTON STYLES ========== */
+/* ===================================== */
+
+.btn {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 8px 14px;
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    #9333ea,
+    #ec4899
+  );
+
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 24px rgba(219, 39, 119, 0.35);
+}
+
+.btn-danger {
+  background: linear-gradient(
+    135deg,
+    #be185d,
+    #ec4899
+  );
+
+  color: #fff;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 24px rgba(236, 72, 153, 0.35);
+}
+
+/* ===================================== */
+/* ============ LOADING ================ */
+/* ===================================== */
+
+.table-loading {
+  text-align: center;
+
+  padding: 48px;
+
+  color: #f8fafc;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  position: relative;
+
+  overflow: hidden;
+
+  letter-spacing: 0.4px;
+}
+
+/* Shimmer Loading Effect */
+
+.table-loading::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -450px;
+
+  width: 450px;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+
+  animation: shimmer 2s infinite linear;
+}
+
+/* ===================================== */
+/* ============ SCROLLBAR ============== */
+/* ===================================== */
+
+.data-table-wrapper::-webkit-scrollbar {
+  height: 10px;
+}
+
+.data-table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    #9333ea,
+    #ec4899
+  );
+
+  border-radius: 20px;
+}
+
+.data-table-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ===================================== */
+/* ============ RESPONSIVE ============= */
+/* ===================================== */
+
+@media (max-width: 768px) {
+
+  .data-table th,
+  .data-table td {
+    padding: 12px 14px;
+    font-size: 0.84rem;
+  }
+
+  .actions-col {
+    width: 125px;
+  }
+
+  .table-loading {
+    padding: 38px 18px;
+  }
+
+  .data-table-wrapper {
+    border-radius: 18px;
+  }
+}
