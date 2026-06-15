@@ -54,20 +54,23 @@ function Courses() {
   async function handleSubmit(e) {
     e.preventDefault();
     const payload = { ...form, credits: parseInt(form.credits), department: form.department.id ? { id: parseInt(form.department.id) } : null };
+    let res;
     if (editing) {
-      await updateCourse(editing.id, payload);
+      res = await updateCourse(editing.id, payload);
     } else {
-      await createCourse(payload);
+      res = await createCourse(payload);
     }
-    setShowForm(false);
-    setEditing(null);
-    loadData();
+    if (res && res.code === 200) {
+      setShowForm(false);
+      setEditing(null);
+      loadData();
+    }
   }
 
   async function handleDelete(course) {
     if (window.confirm(`Delete course ${course.name}?`)) {
-      await deleteCourse(course.id);
-      loadData();
+      const res = await deleteCourse(course.id);
+      if (res && res.code === 200) loadData();
     }
   }
 

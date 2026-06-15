@@ -1,4 +1,4 @@
-const GATEWAY_BASE = 'http://localhost:5000';
+const GATEWAY_BASE = 'https://student-project-backend-3tem.onrender.com';
 
 async function request(url, options = {}) {
   const token = localStorage.getItem('jwt');

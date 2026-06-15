@@ -36,21 +36,23 @@ function Enrollments() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await createEnrollment({ studentId: parseInt(form.studentId), courseId: parseInt(form.courseId) });
-    setShowForm(false);
-    setForm({ studentId: '', courseId: '' });
-    loadData();
+    const res = await createEnrollment({ studentId: parseInt(form.studentId), courseId: parseInt(form.courseId) });
+    if (res && res.code === 200) {
+      setShowForm(false);
+      setForm({ studentId: '', courseId: '' });
+      loadData();
+    }
   }
 
   async function handleComplete(enrollment) {
-    await updateEnrollmentStatus(enrollment.id, 0);
-    loadData();
+    const res = await updateEnrollmentStatus(enrollment.id, 0);
+    if (res && res.code === 200) loadData();
   }
 
   async function handleDelete(enrollment) {
     if (window.confirm('Remove this enrollment?')) {
-      await deleteEnrollment(enrollment.id);
-      loadData();
+      const res = await deleteEnrollment(enrollment.id);
+      if (res && res.code === 200) loadData();
     }
   }
 

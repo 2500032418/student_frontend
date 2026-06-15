@@ -73,20 +73,23 @@ function Grades() {
       totalScore: parseFloat(form.totalScore),
       remarks: form.remarks
     };
+    let res;
     if (editing) {
-      await updateGrade(editing.id, payload);
+      res = await updateGrade(editing.id, payload);
     } else {
-      await createGrade(payload);
+      res = await createGrade(payload);
     }
-    setShowForm(false);
-    setEditing(null);
-    loadData();
+    if (res && res.code === 200) {
+      setShowForm(false);
+      setEditing(null);
+      loadData();
+    }
   }
 
   async function handleDelete(grade) {
     if (window.confirm('Delete this grade record?')) {
-      await deleteGrade(grade.id);
-      loadData();
+      const res = await deleteGrade(grade.id);
+      if (res && res.code === 200) loadData();
     }
   }
 

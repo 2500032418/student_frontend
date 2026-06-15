@@ -16,11 +16,6 @@ import Reports from './pages/Reports.jsx'
 import SmartSearch from './pages/SmartSearch.jsx'
 import Announcements from './pages/Announcements.jsx'
 
-function RootRedirect() {
-  const jwt = localStorage.getItem('jwt');
-  return jwt ? <Layout /> : <Navigate to="/login" replace />;
-}
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
